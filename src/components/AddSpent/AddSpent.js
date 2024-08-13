@@ -2,11 +2,9 @@ import React from 'react';
 import { useState } from 'react';
 import './AddSpent.css';
 
-
 const AddSpent = () => {
     const [amount, setAmount] = useState('');
     const [icon, setIcon] = useState('🎉');
-    const [comment, setComment] = useState('');
 
     const handleSave = () => {
         if (amount) {
@@ -17,7 +15,6 @@ const AddSpent = () => {
             // });
             setAmount('');
             setIcon('🎉');
-            setComment('');
         }
     };
 
@@ -32,6 +29,12 @@ const AddSpent = () => {
         { value: '🏠', label: 'Жилье' },
         { value: '🛍', label: 'Покупки' },
     ];
+
+    const getFontSize = () => {
+        if (amount.length <= 5) return '4rem'; // Размер шрифта для 5 и менее символов
+        if (amount.length <= 10) return '3rem'; // Размер шрифта для 6-10 символов
+        return '2rem'; // Размер шрифта для более 10 символов
+      };
 
     return (
         <div className='addSpent__container'>
@@ -50,23 +53,17 @@ const AddSpent = () => {
                     </label>
                 ))}
             </div>
-            <div>
-                <label>Цена:</label>
+            <div className='addSpent__amount'>
                 <input
                     type="number"
-                    value={100}
+                    value={amount}
+                    placeholder='100₽'
                     onChange={(e) => setAmount(e.target.value)}
+                    style={{ fontSize: getFontSize() }}
                 />
             </div>
-            <div>
-                <label>Комментарий:</label>
-                <input
-                    type="text"
-                    value={comment}
-                    onChange={(e) => setComment(e.target.value)}
-                />
-            </div>
-            <button onClick={handleSave} >Сохранить</button>
+
+            <button onClick={handleSave} className='btn'>Сохранить</button>
         </div>
     );
 }
