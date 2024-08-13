@@ -1,10 +1,19 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: emoji;
+  src:
+    url('./fonts/AppleColorEmoji-HD.ttc') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.emoji {
+  font-family: emoji;
+  font-size: 5vh;
+}
+
+.App {
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,6 +41,7 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
